@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from .models import User
 from .serializers import UserSerializer, UserCreateSerializer, UserUpdateSerializer
 from .permissions import IsOwnerOrAdmin
+from rest_framework.generics import CreateAPIView
 
 
 class UserViewSet(viewsets.ModelViewSet):

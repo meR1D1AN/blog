@@ -16,10 +16,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("users/", include("users.urls")),
-    path("posts/", include("post.urls")),
-    path("comments/", include("comment.urls")),
-    path("api/", include("rest_framework.urls")),
+    path("users/", include("users.urls"), name="users"),
+    path("posts/", include("post.urls"), name="posts"),
+    path("comments/", include("comment.urls"), name="comments"),
     path("docs/", schema_view.with_ui("swagger", cache_timeout=0), name="swagger"),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="redoc"),
 ]

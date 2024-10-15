@@ -8,7 +8,7 @@ from .views import PostViewSet
 app_name = PostConfig.name
 
 router = DefaultRouter()
-router.register(r"posts", PostViewSet)
+router.register(r"", PostViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

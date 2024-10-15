@@ -8,7 +8,7 @@ from .views import UserViewSet
 app_name = UsersConfig.name
 
 router = DefaultRouter()
-router.register(r"users", UserViewSet)
+router.register(r"", UserViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
