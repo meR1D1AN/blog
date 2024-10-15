@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Post
 import re
-from datetime import date
+from datetime import date, datetime
 from django.core.exceptions import ValidationError
 
 
@@ -36,19 +36,13 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ["id", "title", "text", "image", "author", "created_at", "updated_at"]
-        read_only_fields = [
-            "author",
-            "created_at",
-        ]  # Автор не редактируется
+        read_only_fields = ["author", "created_at", "updated_at"]
 
     def validate(self, data):
         title = data.get("title")
         author = self.context["request"].user
-
         # Валидация возраста автора
         validate_author_age(author)
-
         # Валидация заголовка поста
         validate_post_title(title)
-
         return data

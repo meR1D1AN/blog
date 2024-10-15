@@ -114,3 +114,8 @@ SWAGGER_SETTINGS = {
 }
 
 LOGIN_URL = "admin:login"
+
+# Настройки форматов даты и времени для DRF
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+}

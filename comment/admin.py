@@ -5,4 +5,6 @@ from comment.models import Comment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    fileds = ["author", "text", "created_at", "updated_at"]
+    readonly_fields = ("created_at", "updated_at")
+    list_display = ["id", "author", "text", "created_at", "updated_at"]
+    list_display_links = ["id", "text"]

@@ -9,7 +9,10 @@ NULLABLE = {"blank": True, "null": True}
 
 class Post(models.Model):
     title = models.CharField(
-        max_length=255, verbose_name="Заголовок", help_text="Введите заголовок", validators=[validate_post_title]
+        max_length=255,
+        verbose_name="Заголовок",
+        help_text="Введите заголовок",
+        validators=[validate_post_title],
     )
     text = models.TextField(verbose_name="Текст", help_text="Введите текст")
     image = models.ImageField(

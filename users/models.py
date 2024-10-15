@@ -1,8 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.core.exceptions import ValidationError
-
-from .validators import validate_email_domain, validate_password
+from .validators import validate_email_domain, validate_password, validate_phone
 
 
 class User(AbstractUser):
@@ -25,6 +23,7 @@ class User(AbstractUser):
         unique=True,
         verbose_name="Номер телефона",
         help_text="Введите номер телефона, в формате 999 123 45 67, +7 подставится автоматически",
+        validators=[validate_phone],
     )
     birth_date = models.DateField(
         verbose_name="Дата рождения", help_text="Выберите дату рождения"
@@ -42,6 +41,19 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.username} - ({self.email})"
+
+    def clean_phone(self):
+        # Убираем пробелы
+        phone = self.phone.replace(" ", "")
+        # Добавляем код +7, если не введен
+        if not phone.startswith("+7"):
+            phone = "+7" + phone
+        return phone
+
+    def save(self, *args, **kwargs):
+        # Перед сохранением форматируем номер телефона
+        self.phone = self.clean_phone()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Пользователь"

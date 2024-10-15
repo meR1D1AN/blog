@@ -40,3 +40,8 @@ class PostViewSet(viewsets.ModelViewSet):
         )  # По умолчанию только авторизованные пользователи и автор поста или администратор
 
         return [permission() for permission in permission_classes]
+
+
+    def perform_create(self, serializer):
+        # Автоматически устанавливаем текущего пользователя как автора
+        serializer.save(author=self.request.user)

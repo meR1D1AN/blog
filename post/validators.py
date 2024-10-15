@@ -3,7 +3,7 @@ from datetime import date
 from django.core.exceptions import ValidationError
 
 
-# Валидатор возраста (не менее 18 лет)
+# Валидатор возраста (не менее 18 лет) в админ панели Django
 def validate_author_age(author):
     if not author.birth_date:
         raise ValidationError("У автора должна быть указана дата рождения.")
@@ -19,7 +19,7 @@ def validate_author_age(author):
         raise ValidationError("Автор должен быть старше 18 лет для публикации постов.")
 
 
-# Валидатор для запрещенных слов в заголовке поста
+# Валидатор для запрещенных слов в заголовке поста в админ панели Django
 def validate_post_title(value):
     forbidden_words = ["ерунда", "глупость", "чепуха"]
 
