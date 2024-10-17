@@ -20,8 +20,9 @@
     cd blog
     ```
 
-3. Установите зависимости с помощью Poetry:
+3. Активируйте Poetry и установите зависимости с помощью Poetry:
     ```bash
+    poetry shell
     poetry install
     ```
 
