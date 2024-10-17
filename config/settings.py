@@ -113,6 +113,7 @@ SWAGGER_SETTINGS = {
     "TAGS_SORTER": "alpha",  # Сортировка тегов по алфавиту
 }
 
+# URL для перехода на страницу входа в /docs
 LOGIN_URL = "admin:login"
 
 # Настройки форматов даты и времени для DRF

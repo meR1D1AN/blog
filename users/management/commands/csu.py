@@ -3,6 +3,16 @@ from django.core.management import BaseCommand
 from users.models import User
 
 
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+dot_env = os.path.join(BASE_DIR, ".env")
+load_dotenv(dotenv_path=dot_env)
+
+
 class Command(BaseCommand):
     help = "Создание учётки админа"
 
@@ -16,5 +26,5 @@ class Command(BaseCommand):
             is_staff=True,
             is_active=True,
         )
-        user.set_password("Admin1234")
+        user.set_password(os.getenv("ADMIN_PASSWORD"))
         user.save()

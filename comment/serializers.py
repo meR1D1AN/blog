@@ -9,5 +9,4 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = [
             "author",
             "created_at",
-            "updated_at",
         ]  # Автор и даты не редактируются

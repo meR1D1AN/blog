@@ -5,7 +5,7 @@ from .validators import validate_password
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
-        write_only=True, required=False
+        read_only=True, required=False
     )  # Поле password только для чтения, и это поле не обязательно
 
     class Meta:
@@ -33,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(UserSerializer):
     password = serializers.CharField(
         write_only=True
-    )  # Поле password только для чтения, и это поле обязательно
+    )  # Поле password только для записи, и это поле обязательно
 
     class Meta(UserSerializer.Meta):
         fields = UserSerializer.Meta.fields
@@ -49,7 +49,7 @@ class UserCreateSerializer(UserSerializer):
 class UserUpdateSerializer(UserSerializer):
     password = serializers.CharField(
         write_only=True, required=False
-    )  # Поле password только для чтения, и это поле не обязательно
+    )  # Поле password только для записи, и это поле не обязательно
 
     class Meta(UserSerializer.Meta):
         fields = UserSerializer.Meta.fields
